@@ -1,0 +1,132 @@
+<%- include('partials/header'); -%>
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<%- include('partials/nav'); -%>
+
+	<!-- banner start -->
+	<section class="banner_part">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-lg-6 col-md-8">
+                    <div class="banner_text">
+                        <div class="banner_text_iner">
+                            <h1>Reserve Your Tickets Now!</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore
+                                magna aliqua. Quis ipsum </p>
+                            <a href="#schedule_part" class="btn_1">Cinema Schedule</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- banner end -->
+
+    <!-- Schedule -->
+    <section id="schedule_part">
+    	<div class="container">
+    		<div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section_title text-center">
+                        <h2>Schedule of the Day</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center cards-container">
+                <% movies.forEach(movie => { %>
+                    <div class='col-lg-4 col-md-6'>
+                        <div class='cards cards--two'>
+                            <a href='/movies/<%= movie._id %>' id='<%= movie._id %>'>
+                                <img class='img-responsive' src='img/<%- movie.title.toLowerCase().replace(/:/g,"")%>.jpg'>
+                                <span class='cards--two__rect'></span>
+                                <% var t = movie.title.length < 15?movie.title:movie.title.substring(0,15)+"...";%>
+                                <h3><%=t%></h3>
+                                <p><%= movie.duration %> mins | <i class='fa fa-star'></i><%= movie.rating %></p>
+                                <span class='genre_list'><%- movie.genrelist.toString().replace(/,/g, " / ")%></span>
+                            </a>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+    	</div>	
+    </section>
+    <!-- Schedule end -->
+    <section class="now_showing_part">
+    	<div class="container">
+    		<div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section_title text-center">
+                        <h2>Now Showing</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center cards-container">
+            	<div class="col-lg-4 col-md-6">
+            		<div class="row justify-content-center">
+	                    <h3 class="cinema_number">Cinema 1</h3>
+	                </div>
+                	<div class="cards cards--two">
+					    <img class="img-responsive" src="img/mulan.jpg">
+					    <span class="cards--two__rect"></span>
+					    <h3>Mulan</h3>
+					    <p> 120 mins | <i class="fa fa-star"></i> 6.8 </p>
+					    <span class="genre_list"> Romance / Comedy / Horror</span>
+					</div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                	<div class="row justify-content-center">
+	                    <h3 class="cinema_number">Cinema 2</h3>
+	                </div>
+                	<div class="cards cards--two">
+					    <img class="img-responsive" src="img/kingsman.jpg">
+					    <span class="cards--two__rect"></span>
+					    <h3>Kingsman</h3>
+					    <p> 116 mins | <i class="fa fa-star"></i> 6.8 </p>
+					    <span class="genre_list"> Romance / Comedy / Horror</span>
+					</div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                	<div class="row justify-content-center">
+	                    <h3 class="cinema_number">Cinema 3</h3>
+	                </div>
+                	<div class="cards cards--two">
+					    <img class="img-responsive" src="img/sonic.jpg">
+					    <span class="cards--two__rect"></span>
+					    <h3>Sonic</h3>
+					    <p> 110 mins | <i class="fa fa-star"></i> 6.8 </p>
+					    <span class="genre_list"> Romance / Comedy / Horror</span>
+					</div>
+                </div>
+            </div>
+    	</div>	
+    </section>
+    <!-- schedule end -->
+
+    <!-- Coming soon -->
+    <section class="now_showing_part">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section_title text-center">
+                        <h2>Coming Soon</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination"></div>
+                    </div>
+            </div>
+            </div>
+        </div>  
+    </section>
+    <!-- Coming soon end -->
+<%- include('partials/footer'); -%>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/swiper.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>

@@ -1,0 +1,111 @@
+<%- include('partials/header'); -%>
+<link rel="stylesheet" type="text/css" href="css/movie.css">
+<%- include('partials/nav'); -%>
+
+<section class="breadcrumb breadcrumb_bg <%- scheds[0].movie.title.toLowerCase().replace(/ /g,'-').replace(/:/g,'') %>-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb_iner text-center">
+                    <div class="breadcrumb_iner_item">
+                        <h2><%= scheds[0].movie.title %></h2>
+                        <p><%= scheds[0].movie.duration%> mins | <i class='fa fa-star'></i> <%= scheds[0].movie.rating %></p>
+                        <span class="genre_list"><%- scheds[0].movie.genrelist.toString().replace(/,/g, " / ") %></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="synopsis_part section_part">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="section_title text-center">
+                    <h2>Synopsis</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <p class="article">
+                <%= scheds[0].movie.synopsis %>
+            </p>
+        </div>
+    </div>
+</section>
+<section class="section_part">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="section_title text-center">
+                    <h2>Schedule</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row table_container table-responsive">
+            <table class="table table-dark table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Cinema No.</th>
+                        <th>Price</th>
+                        <th>Seats Left</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% scheds.forEach(sched => { %>
+                        <%var d = new Date(sched.date);%>
+                        <%var dateOnly = d.toDateString();%>
+                        <%var startTime = d.toLocaleTimeString();%>
+                        <%var endTime = new Date(d.getTime() + (sched.movie.duration * 60000)).toLocaleTimeString();%>
+                        <tr id='<%= sched._id %>'>
+                            <td><%= sched._id %></td>
+                            <td><%-dateOnly.match(/\w+\s\d{2}\s\d{4}/g)%></td>
+                            <td><%-startTime.match(/\d+:\d+/)%>  
+                                <%-startTime.match(/\w{2}$/) %> -
+                                <%-endTime.match(/\d+:\d+/) %> 
+                                <%-endTime.match(/\w{2}$/)%></td>
+                            <td>Cinema <%= sched.cinema.cinema %></td>
+                            <td><b><%= sched.cinema.price %> php</b>/seat</td>
+                            <td><b><%=sched.seats%></b> seats remaining</td>
+                            <td><a class='reserve-btn' href='/<%=sched._id%>/reserve'>Reserve</a></td>
+                       </tr>
+                   <%});%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section class="section_part_photos">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="section_title text-center">
+                    <h2>Photos</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <% scheds[0].movie.photos.forEach(photo => { %>
+                <div class='swiper-slide'>
+                    <img src='/img/<%-scheds[0].movie.title.replace(/:/g,"")%>/1 (<%=photo%>).jpg'>
+                </div>
+            <%});%>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/swiper.min.js"></script>
+<script type="text/javascript" src="/js/movie.js"></script>
+
+<%- include('partials/footer'); -%>

@@ -1,0 +1,108 @@
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+}
+.cards {
+  font-family: "Poppins", sans-serif;
+  display: block;
+  background-size: cover;
+  float: left;
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+  background-position: center;
+  margin: 10px;
+}
+.cards--two {
+  margin-bottom: 20px;
+  position: relative;
+  backface-visibility: hidden;
+}
+.cards--two h3,.cards--two p, .cards--two .genre_list {
+  position: absolute;
+  left: -100%;
+  text-transform: capitalize;
+  color: #fff;
+  z-index: 8;
+  transition: all .6s ease;
+}
+.cards--two h3 {
+  font-weight: 900;
+  transition: all .6s ease;
+  font-size: 1.4em;
+  top: 80%;
+}
+.cards--two p {
+  color: #cecece;
+  transition: all .75s ease;
+  top: 85.5%;
+}
+.cards--two .genre_list {
+  display: none;
+  color: #cecece;
+  transition: all .8s ease;
+  top: 90%;
+}
+.cards--two:hover h3 {
+  left: 3%;
+}
+.cards--two:hover p {
+  left: 3%;
+}
+.cards--two:hover .genre_list {
+  display: block;
+  left: 3%;
+}
+.cards--two:hover img {
+  transform: translateY(-15px);
+}
+.cards--two:hover .cards--two__rect {
+  top: 75%;
+}
+.cards--two:hover .cards--two__rect:before {
+  transform: translateY(15px);
+}
+.cards--two:hover li {
+  transform: translateY(0);
+}
+
+.cards--two img {
+  transition: all .2s ease;
+}
+
+.cards--two__rect {
+  width: 750px;
+  height: 200px;
+  background: #0b0f18;
+  display: block;
+  position: absolute;
+  top: 175%;
+  left: -78%;
+  transform: rotate(30deg);
+  z-index: 5;
+  opacity: .9;
+  transition: all .3s ease-in-out;
+}
+.cards--two__rect:before {
+  content: '';
+  display: block;
+  width: 100%;
+  position: relative;
+  height: 100%;
+  background: -webkit-linear-gradient(right, #ff0000 0%, #c6019a 11%, #ff0000 100%);
+  background-position: right;
+  transform: translateY(200px);
+  z-index: 2;
+  transition: all .3s ease-in-out;
+  transition-delay: .1s;
+}
+
+@media (max-width: 401px){
+  .cards--two h3 {
+    right: 100%;
+  }
+  .cards--two__rect{
+    left: -100%;
+  }
+}
+
